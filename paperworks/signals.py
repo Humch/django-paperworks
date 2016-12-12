@@ -9,7 +9,7 @@ from os import remove
 
 # génère un aperçu du fichier qui va remplacer le champ thumbnail par défaut
 
-@receiver(post_save, sender=Fichier)
+@receiver(post_save, sender=Papermail)
 def generate_thumbnail(sender,instance, **kwargs):
     
     mime = magic.Magic(mime=True)
