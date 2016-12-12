@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block title %}{{ papermail.name_file }}{% endblock %}
+
+{% block css %}
+	<link rel="stylesheet" href="{% static "css/foundation-datepicker.min.css" %}">
+{% endblock %}
+
+{% block menu-off-canvas-small %}
+{% endblock %}
+{% block menu-off-canvas-medium %}
+{% endblock %}
+
+{% block content %}
+    <div class='column row'>
+        <h2 class='text-center'>{{ papermail.name_file }}</h2>
+    </div>
+    <div class='row'>
+        <div class='small-4 columns'>
+            <img class='thumbnail' src="{{ papermail.thumbnail.url }}"/>
+        </div>
+        <div class='small-8 columns'>
+            <p>
+                <div class="button-group">
+                    <button class="button success" onClick="updateFichier('{% url 'papermail-update' papermail.id %}')"><i class="fi-pencil"></i> Editer</button>
+                    <button class="button"><i class="fi-share"></i> Partager</button>
+                    <button class="alert button" onClick="deleteFichier('{% url 'papermail-delete' papermail.id %}')"><i class="fi-x"></i> Supprimer</button>
+                </div>
+            </p>
+            <p> Date du document : {{ papermail.date_paper }} </p>
+            <p> Emetteur du document : {{ papermail.sender }} </p>
+			<p> Destinataire du document : {{ papermail.destinataire }} </p>
+            <p> Etiquettes du document : {% for tag in all_tags %}{{ tag.name }}{% if not forloop.last %} | {% endif %}{% endfor %}</p>
+            <p><a href='{{papermail.paper_file.url}}' target="_blank" class='button'><i class="fi-download"></i> Télécharger le fichier</a></p>
+        </div>
+    </div>
+
+	<div class="reveal" id="PapermailUpdate" data-reveal>
+	</div>
+	<div class="reveal" id="PapermailDelete" data-reveal>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	
+	<script src="{% static 'js/foundation-datepicker.min.js' %}"></script>
+	<script src="{% static 'js/foundation-datepicker.fr.js' %}"></script>
+	
+	<script type="text/javascript">
+		function updatePapermail($idPapermail) {
+			$.ajax($idPapermail)
+			.done(function(resp){
+				$("#PapermailUpdate").html(resp).foundation('open');
+			});
+		}
+	</script>
+	
+	<script type="text/javascript">
+		function deletePapermail($idPapermail) {
+			$.ajax($idPapermail)
+		.done(function(resp){
+			$("#PapermailDelete").html(resp).foundation('open');
+		});
+		}
+	</script>
+{% endblock %}
