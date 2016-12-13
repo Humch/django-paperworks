@@ -5,4 +5,4 @@ class PaperworksConfig(AppConfig):
     name = 'paperworks'
 
     def ready(self):
-        import ged.signals
+        import paperworks.signals
