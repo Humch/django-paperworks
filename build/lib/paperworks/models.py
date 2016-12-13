@@ -9,7 +9,6 @@ from django.conf import settings
 from wand.image import Image
 
 paperworks_media_root = getattr(settings, 'PAPERWORKS_MEDIA_ROOT')
-paperworks_media_thumb_default = getattr(settings, 'PAPERWORKS_MEDIA_THUMB_DEFAULT','static/paperworks/images/default_thumb.jpg')
 
 class Sender(models.Model):
     
@@ -34,9 +33,9 @@ class Tag(models.Model):
 
 class Papermail(models.Model):
     
-    paper_file = models.FileField(upload_to=paperworks_media_root)
+    paper_file = models.FileField(upload_to = paperworks_media_root)
     name_file = models.CharField(max_length=200)
-    thumbnail = models.ImageField(upload_to=paperworks_media_root,default=paperworks_media_thumb_default,blank=True)
+    thumbnail = models.ImageField(upload_to = paperworks_media_root, blank=True)
     sender = models.ForeignKey(Sender, on_delete=models.CASCADE)
     recipient = models.ForeignKey(Recipient, on_delete=models.CASCADE)
     tag = models.ManyToManyField(Tag,blank=True)

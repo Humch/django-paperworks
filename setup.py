@@ -20,7 +20,8 @@ setup(
     author_email='fabienschlegel@yahoo.fr',
     install_requires=[
         'Wand',
-        'Pillow'
+        'Pillow',
+        'python-magic'
     ],
     classifiers=[
         'Environment :: Web Environment',
