@@ -6,3 +6,4 @@ class PaperworksConfig(AppConfig):
 
     def ready(self):
         import paperworks.signals
+        import paperworks.urls

@@ -1,4 +1,4 @@
-{% for fichier in fichiers %}
+{% for papermail in papermails %}
         {% cycle '<div class="row">' '' '' ''%}
         <div class="small-3 columns  {% if forloop.last %} end {% endif %}">
             <a class="thumbnail" href='{% url 'papermail-detail' papermail.id %}'><img src="{{ papermail.thumbnail.url }}"/></a>

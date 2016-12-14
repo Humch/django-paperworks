@@ -1,20 +1,15 @@
-{% extends "base.html" %}
+{% extends "paperworks.html" %}
 
 {% load static from staticfiles %}
 
 {% block title %}Liste des fichiers{% endblock %}
 
 {% block css %}
-	<link rel="stylesheet" href="{% static "css/foundation-datepicker.min.css" %}">
-{% endblock %}
-
-{% block menu-off-canvas-small %}
-{% endblock %}
-{% block menu-off-canvas-medium %}
+	<link rel="stylesheet" href="{% static "paperworks/css/foundation-datepicker.min.css" %}">
 {% endblock %}
 
 {% block content %}
-        <div class='row margin-bottom'>
+        <div class='row margin-bottom margin-top'>
 		<div class='small-6 columns'>
 			<p class="text-center"><button class='button' onClick="addPapermail()">Ajouter un document <i class="fi-plus"></i></button></p>
 		</div>
@@ -27,10 +22,10 @@
                 </div>
         </div>
 <span id="papermail_view">
- {% include request.session.papermail %}
+ {% include request.session.fileview %}
 </span>
 
-<div class="reveal" id="addFichierForm" data-reveal>
+<div class="reveal" id="addPapermailForm" data-reveal>
 </div>
 
 <!-- pagination avec filtre des catégories et recherche d'articles-->
@@ -38,8 +33,8 @@
 	<div class="row">
 		<ul class="pagination text-center" role="navigation" aria-label="Pagination">
 			{% if page_obj.has_previous %}
-				<li class="pagination-previous"><a href="{% url 'fichier-list' %}?page={{ page_obj.previous_page_number }}" aria-label="Previous page"><i class="fi-previous"></i></a></li>
-				<li><a href="{% url 'paperview-list' %}?page={{ page_obj.paginator.page_range|first }}" aria-label="Page {{ page_obj.paginator.page_range|first }}">{{ page_obj.paginator.page_range|first }}</a></li>
+				<li class="pagination-previous"><a href="{% url 'papermail-list' %}?page={{ page_obj.previous_page_number }}" aria-label="Previous page"><i class="fi-previous"></i></a></li>
+				<li><a href="{% url 'papermail-list' %}?page={{ page_obj.paginator.page_range|first }}" aria-label="Page {{ page_obj.paginator.page_range|first }}">{{ page_obj.paginator.page_range|first }}</a></li>
 			{% else %}
 				<li class="pagination-previous disabled"><i class="fi-previous"></i></li>
 			{% endif %}
@@ -52,12 +47,12 @@
 						<li class="ellipsis"></li>
 					{% elif page > page_obj.number|add:"4" or page < page_obj.number|add:"-4" %}
 					{% else %}
-						<li><a href="{% url 'paperview-list' %}?page={{ page }}" aria-label="Page {{ page }}">{{ page }}</a></li>
+						<li><a href="{% url 'papermail-list' %}?page={{ page }}" aria-label="Page {{ page }}">{{ page }}</a></li>
 					{% endif %}
 				{% endfor %}
 			{% if page_obj.has_next %}
-				<li><a href="{% url 'paperview-list' %}?page={{ page_obj.paginator.page_range|last }}" aria-label="Page {{ page_obj.paginator.page_range|last }}">{{ page_obj.paginator.page_range|last }}</a></li>
-				<li class="pagination-next"><a href="{% url 'paperview-list' %}?page={{ page_obj.next_page_number }}" aria-label="Next page"><i class="fi-next"></i></a></li>
+				<li><a href="{% url 'papermail-list' %}?page={{ page_obj.paginator.page_range|last }}" aria-label="Page {{ page_obj.paginator.page_range|last }}">{{ page_obj.paginator.page_range|last }}</a></li>
+				<li class="pagination-next"><a href="{% url 'papermail-list' %}?page={{ page_obj.next_page_number }}" aria-label="Next page"><i class="fi-next"></i></a></li>
 			{% else %}
 				<li class="pagination-next disabled"><i class="fi-next"></i></li>
 			{% endif %}
@@ -69,13 +64,13 @@
 
 {% block javascript %}
 
-	<script src="{% static 'js/foundation-datepicker.min.js' %}"></script>
-	<script src="{% static 'js/foundation-datepicker.fr.js' %}"></script>
+	<script src="{% static 'paperworks/js/foundation-datepicker.min.js' %}"></script>
+	<script src="{% static 'paperworks/js/foundation-datepicker.fr.js' %}"></script>
 
         <script type="text/javascript">
 		function changePapermailView(action){
 			$.ajax({
-				url:'{% url 'paperview-list' %}?page={{ page_obj.number }}',
+				url:'{% url 'papermail-list' %}?page={{ page_obj.number }}',
 				data: {action: action},
 				dataType: "html",
 				type: 'GET',

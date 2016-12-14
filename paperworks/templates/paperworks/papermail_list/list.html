@@ -11,7 +11,7 @@
                         </tr>
                 </thead>
                 <tbody>
-                        {% for fichier in fichiers %}
+                        {% for papermail in papermails %}
                                 <tr>
                                         <td><a href='{% url 'papermail-detail' papermail.id %}'>{{ papermail.name_file }}</a></td>
                                         <td class='text-center'>{{ papermail.sender }}</td>
