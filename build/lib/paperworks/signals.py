@@ -9,7 +9,8 @@ import magic
 from wand.image import Image
 from os import remove
 
-# génère un aperçu du fichier qui va remplacer le champ thumbnail par défaut
+# generate a thumbnail of the file to display in views
+# only jpeg png or pdf is supported
 
 media_root = getattr(settings, 'MEDIA_ROOT')
 

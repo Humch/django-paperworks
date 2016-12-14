@@ -1,0 +1,45 @@
+{% load static from staticfiles %}
+<!doctype html>
+
+<html lang="fr">
+    
+    <head>
+        
+        <meta charset="utf-8">
+
+        <title>{% block title %}Paperworks{% endblock %}</title>
+		
+		<meta name="viewport" content="width=device-width" >
+		
+        <meta name="description" content="Paperworks">
+		
+		{% block css %}
+
+		{% endblock %}
+		<link rel="stylesheet" href="{% static "paperworks/css/paperworks.css" %}" type='text/css'>
+		<link rel="stylesheet" href="{% static "paperworks/css/foundation.min.css" %}" type='text/css'>
+		<link rel='stylesheet' href="{% static "paperworks/css/foundation-icons.css" %}" type='text/css'>
+		
+		<link rel="stylesheet" href="{% static "paperworks/css/jquery-ui.css" %}">
+		
+    </head>
+
+    <body>
+		{% block content %}
+
+		{% endblock %}
+	
+		<script src='{% static "paperworks/js/vendor/jquery.min.js" %}'></script>
+		<script src='{% static "paperworks/js/jquery-ui.js" %}'></script>
+		<script src='{% static "paperworks/js/foundation.min.js" %}'></script>
+		<script type="text/javascript">
+			$(document).foundation();
+		</script>
+
+	{% block javascript %}
+		
+	{% endblock %}
+
+    </body>
+    
+</html>

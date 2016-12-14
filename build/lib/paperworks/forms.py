@@ -5,7 +5,7 @@ from .models import Papermail, Tag, Sender
 
 class PapermailUpdateForm(ModelForm):
     
-    name_file = forms.FileField(
+    paper_file = forms.FileField(
                     required=False,
                     widget = FileInput()
                 )

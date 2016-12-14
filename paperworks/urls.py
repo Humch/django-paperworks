@@ -1,11 +1,11 @@
 from django.conf.urls import url
 
-from .views import FichierList, FichierDetail, FichierCreate, FichierUpdate, FichierDelete
+from .views import PapermailList, PapermailDetail, PapermailCreate, PapermailUpdate, PapermailDelete
 
 urlpatterns = [
-    url(r'^g_$', FichierList.as_view(), name='fichier-list'),
-    url(r'^g_(?P<pk>\d+)/$', FichierDetail.as_view(), name='fichier-detail'),
-    url(r'^g_create/$', FichierCreate.as_view(), name='fichier-create'),
-    url(r'^g_maj/(?P<pk>\d+)/$', FichierUpdate.as_view(), name='fichier-update'),
-    url(r'^g_delete/(?P<pk>\d+)/$', FichierDelete.as_view(), name='fichier-delete'),
+    url(r'^$', PapermailList.as_view(), name='papermail-list'),
+    url(r'^(?P<pk>\d+)/$', PapermailDetail.as_view(), name='papermail-detail'),
+    url(r'^create/$', PapermailCreate.as_view(), name='papermail-create'),
+    url(r'^maj/(?P<pk>\d+)/$', PapermailUpdate.as_view(), name='papermail-update'),
+    url(r'^delete/(?P<pk>\d+)/$', PapermailDelete.as_view(), name='papermail-delete'),
 ]

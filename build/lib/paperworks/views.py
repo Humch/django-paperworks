@@ -43,12 +43,12 @@ class AjaxableResponseMixin(object):
 class PapermailList(ListView):
     
     model = Papermail
-    context_object_name = 'files'
+    context_object_name = 'papermails'
     paginate_by = 12
 
     def get_context_data(self, **kwargs):
         
-        context = super(FichierList, self).get_context_data(**kwargs)
+        context = super(PapermailList, self).get_context_data(**kwargs)
 
         context['all_tags'] = Tag.objects.all()
         
@@ -82,7 +82,7 @@ class PapermailList(ListView):
     
     def get_queryset(self):
         
-        queryset = Papermail.objects.all().filter(propriete_de=self.request.user)
+        queryset = Papermail.objects.all().filter(property_of=self.request.user)
         
         return queryset
 
