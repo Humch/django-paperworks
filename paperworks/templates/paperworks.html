@@ -25,6 +25,38 @@
     </head>
 
     <body>
+		
+		{% block menu %}
+			<div class="title-bar" data-responsive-toggle="paperworks-menu" data-hide-for="medium">
+					<button class="menu-icon" type="button" data-toggle></button>
+					<div class="title-bar-title">Menu</div>
+			</div>
+			<div class="top-bar" id="paperworks-menu">
+				<div id="responsive-menu">
+					<div class="top-bar-left show-for-medium">
+						<ul class="menu">
+							<li class="menu-text">Django Paperworks</li>
+					    </ul>
+					</div>
+					<div class="top-bar-right">
+						<ul class="menu">
+							<li>
+								Bonjour, {{ request.user }}
+							</li>
+							{% if user.is_superuser %}
+								<li>
+									<a href="/admin/"><i class="fi-torso-business"></i> Admin</a>
+								</li>
+							{% endif %}
+							<li class="li-menu">
+								<a href="#"><i class="fi-power menu-i"></i> Logout</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+		
 		{% block content %}
 
 		{% endblock %}
