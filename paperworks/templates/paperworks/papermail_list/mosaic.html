@@ -1,7 +1,8 @@
+{% load static %}
 {% for papermail in papermails %}
         {% cycle '<div class="row">' '' '' ''%}
         <div class="small-3 columns  {% if forloop.last %} end {% endif %}">
-            <a class="thumbnail" href='{% url 'papermail-detail' papermail.id %}'><img src="{{ papermail.thumbnail.url }}"/></a>
+            <a class="thumbnail" href='{% url 'papermail-detail' papermail.id %}'><img src="{% if papermail.thumbnail %}{{ papermail.thumbnail.url }}{% else %}{% static 'paperworks/images/default_thumb.jpg' %}{% endif %}"/></a>
         </div>
         {% cycle '' '' '' '</div>'%}
 {% empty %}
