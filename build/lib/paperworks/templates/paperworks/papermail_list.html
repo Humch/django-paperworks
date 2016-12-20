@@ -10,21 +10,22 @@
 
 {% block content %}
         <div class='row margin-bottom margin-top'>
-		<div class='small-6 columns'>
-			<p class="text-center"><button class='button' onClick="addPapermail()">Ajouter un document <i class="fi-plus"></i></button></p>
-		</div>
-                <div class='small-4 columns'>
-                        <div class="small button-group show-for-medium">
-                                <a class="button" onClick="changePapermailView('details')"><i class="fi-list-thumbnails"></i> Détails</a>
-                                <a class="button" onClick="changePapermailView('list')"><i class="fi-list"></i> Liste</a>
-                                <a class="button" onClick="changePapermailView('mosaic')"><i class="fi-thumbnails"> Mosaïque</i></a>
-                        </div>
-						<div class="small button-group hide-for-medium">
-                                <a class="button" onClick="changePapermailView('details')"><i class="fi-list-thumbnails"></i></a>
-                                <a class="button" onClick="changePapermailView('list')"><i class="fi-list"></i></a>
-                                <a class="button" onClick="changePapermailView('mosaic')"><i class="fi-thumbnails"></i></a>
-                        </div>
-                </div>
+			<div class='small-6 columns'>
+				<p class="text-center show-for-medium"><button class='button' onClick="addPapermail()">Ajouter un document <i class="fi-plus"></i></button></p>
+				<p class="text-center hide-for-medium"><button class='button' onClick="addPapermail()"><i class="fi-plus"></i></button></p>
+			</div>
+			<div class='small-4 columns'>
+					<div class="small button-group show-for-medium">
+							<a class="button" onClick="changePapermailView('details')"><i class="fi-list-thumbnails"></i> Détails</a>
+							<a class="button" onClick="changePapermailView('list')"><i class="fi-list"></i> Liste</a>
+							<a class="button" onClick="changePapermailView('mosaic')"><i class="fi-thumbnails"> Mosaïque</i></a>
+					</div>
+					<div class="small button-group hide-for-medium">
+							<a class="button" onClick="changePapermailView('details')"><i class="fi-list-thumbnails"></i></a>
+							<a class="button" onClick="changePapermailView('list')"><i class="fi-list"></i></a>
+							<a class="button" onClick="changePapermailView('mosaic')"><i class="fi-thumbnails"></i></a>
+					</div>
+			</div>
         </div>
 <span id="papermail_view">
  {% include request.session.fileview %}
