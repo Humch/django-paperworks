@@ -48,11 +48,11 @@
 							</li>
 							{% if user.is_superuser %}
 								<li>
-									<a href="/admin/"><i class="fi-torso-business"></i> Admin</a>
+									<a href="{% url 'admin:index' %}"><i class="fi-torso-business"></i> Admin</a>
 								</li>
 							{% endif %}
 							<li class="li-menu">
-								<a href="#"><i class="fi-power menu-i"></i> Logout</a>
+								<a href="{% url 'admin:logout' %}"><i class="fi-power menu-i"></i> Logout</a>
 							</li>
 						</ul>
 					</div>
@@ -63,11 +63,11 @@
 							</li>
 							{% if user.is_superuser %}
 								<li>
-									<a href="/admin/"><i class="fi-torso-business"></i></a>
+									<a href="{% url 'admin:index' %}"><i class="fi-torso-business"></i></a>
 								</li>
 							{% endif %}
 							<li class="li-menu">
-								<a href="#"><i class="fi-power menu-i"></i></a>
+								<a href="{% url 'admin:logout' %}"><i class="fi-power menu-i"></i></a>
 							</li>
 					    </ul>
 					</div>
