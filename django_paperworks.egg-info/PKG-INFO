@@ -2,7 +2,7 @@ Metadata-Version: 1.1
 Name: django-paperworks
 Version: 0.0.1
 Summary: a Django app to store and to sort personal paperworks
-Home-page: https://www.example.com/
+Home-page: https://github.com/Humch/django-paperworks
 Author: Fabien Schlegel
 Author-email: fabienschlegel@yahoo.fr
 License: MIT License

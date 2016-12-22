@@ -7,6 +7,9 @@ django_paperworks.egg-info/SOURCES.txt
 django_paperworks.egg-info/dependency_links.txt
 django_paperworks.egg-info/requires.txt
 django_paperworks.egg-info/top_level.txt
+docs/Makefile
+docs/conf.py
+docs/index.rst
 paperworks/__init__.py
 paperworks/admin.py
 paperworks/apps.py

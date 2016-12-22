@@ -15,7 +15,7 @@ setup(
     license='MIT License',
     description='a Django app to store and to sort personal paperworks',
     long_description=README,
-    url='https://www.example.com/',
+    url='https://github.com/Humch/django-paperworks',
     author='Fabien Schlegel',
     author_email='fabienschlegel@yahoo.fr',
     install_requires=[
