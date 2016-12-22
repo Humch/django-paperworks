@@ -8,7 +8,7 @@ from django.conf import settings
 
 from wand.image import Image
 
-paperworks_media_root = getattr(settings, 'PAPERWORKS_MEDIA_ROOT')
+paperworks_media_root = getattr(settings, 'PAPERWORKS_MEDIA_ROOT','')
 
 class Sender(models.Model):
     
