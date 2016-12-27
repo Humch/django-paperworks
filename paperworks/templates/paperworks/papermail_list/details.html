@@ -11,7 +11,7 @@
                             <img class="thumbnail" src="{% if papermail.thumbnail %}{{ papermail.thumbnail.url }}{% else %}{% static 'paperworks/images/default_thumb.jpg' %}{% endif %}"/>
                     </div>
                     <div class='small-6 columns'>
-                            <p class="text-smaller">{{ papermail.date_paper|date:"t/m/y" }}</p>
+                            <p class="text-smaller">{{ papermail.date_paper|date:"d/m/y" }}</p>
                             <p class="text-smaller">Emetteur : {{ papermail.sender }}</p>
                             <p class="text-smaller">Destinataire : {{ papermail.recipient }}</p>
                     </div>
