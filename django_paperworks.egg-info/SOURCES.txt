@@ -20,12 +20,10 @@ docs/_build/html/search.html
 docs/_build/html/searchindex.js
 docs/_build/html/_sources/index.rst.txt
 docs/_build/html/_static/ajax-loader.gif
-docs/_build/html/_static/alabaster.css
 docs/_build/html/_static/basic.css
 docs/_build/html/_static/comment-bright.png
 docs/_build/html/_static/comment-close.png
 docs/_build/html/_static/comment.png
-docs/_build/html/_static/custom.css
 docs/_build/html/_static/doctools.js
 docs/_build/html/_static/down-pressed.png
 docs/_build/html/_static/down.png
