@@ -1,3 +1,0 @@
-Wand
-Pillow
-python-magic
