@@ -1,3 +1,5 @@
+import os
+
 from django.test import TestCase
 
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -48,9 +50,7 @@ class PapermailTestCase(TestCase):
         paper_file = SimpleUploadedFile(name='test_image.jpg', content=open('paperworks/tests/test_image.jpg', 'rb').read(), content_type='image/jpeg')
         s = Sender.objects.create(name = 'Friendly Sender')
         r = Recipient.objects.create(name = 'Friendly Recipient')
-        #t = Tag.objects.create(name = 'fun tag')
         property_of = User.objects.create(username = 'Paul')
-        #shared_with = User.objects.create(username = 'Ringo')
         
         return Papermail.objects.create(name_file = name_file, paper_file = paper_file, sender = s,recipient = r, date_paper = date_paper, property_of = property_of)
         
@@ -59,3 +59,5 @@ class PapermailTestCase(TestCase):
         m = self.create_papermail()
         self.assertTrue(isinstance(m, Papermail))
         self.assertEqual(m.__str__(), m.name_file)
+# remove the file create by the test
+        os.remove(m.paper_file.path)
