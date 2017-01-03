@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse_lazy
 
 import json
 
-from .models import Papermail, Tag
+from .models import Papermail, Tag, Sender
 from .forms import PapermailUpdateForm
 
 # Mixin pour la gestion des formulaires envoyés par AJAX --> issu du site Django https://docs.djangoproject.com/fr/1.9/topics/class-based-views/generic-editing/
@@ -35,6 +35,32 @@ class AjaxableResponseMixin(object):
             data = {
                 'pk': self.object.pk,
                 'name_file': self.object.name_file,
+            }
+            return JsonResponse(data)
+        else:
+            return response
+
+class SenderAjaxableResponseMixin(object):
+    """
+    Mixin to add AJAX support to a form.
+    Must be used with an object-based FormView (e.g. CreateView)
+    """
+    def form_invalid(self, form):
+        response = super(SenderAjaxableResponseMixin, self).form_invalid(form)
+        if self.request.is_ajax():
+            return JsonResponse(form.errors, status=400)
+        else:
+            return response
+
+    def form_valid(self, form):
+        # We make sure to call the parent's form_valid() method because
+        # it might do some processing (in the case of CreateView, it will
+        # call form.save() for example).
+        response = super(SenderAjaxableResponseMixin, self).form_valid(form)
+        if self.request.is_ajax():
+            data = {
+                'pk': self.object.pk,
+                'name': self.object.name,
             }
             return JsonResponse(data)
         else:
@@ -140,3 +166,13 @@ class PapermailDelete(AjaxableResponseMixin, DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(PapermailDelete, self).dispatch(*args, **kwargs)
+
+class SenderCreate(SenderAjaxableResponseMixin,CreateView):
+    
+    model = Sender
+    fields = ['name']
+    template_name = 'paperworks/sender_create_form.html'
+    
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(SenderCreate, self).dispatch(*args, **kwargs)

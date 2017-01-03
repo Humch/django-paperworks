@@ -32,9 +32,11 @@
         </div>
     </div>
 
-	<div class="reveal" id="PapermailUpdate" data-reveal>
+	<div class="reveal" id="PapermailUpdate" data-reveal data-multiple-opened="true">
 	</div>
 	<div class="reveal" id="PapermailDelete" data-reveal>
+	</div>
+	<div class="reveal" id="openSenderForm" data-reveal data-multiple-opened="true">
 	</div>
 {% endblock %}
 
@@ -58,6 +60,14 @@
 		.done(function(resp){
 			$("#PapermailDelete").html(resp).foundation('open');
 		});
+		}
+	</script>
+	<script type="text/javascript">
+		function addSender() {
+			$.ajax('{% url 'sender-create' %}')
+			.done(function(resp){
+				$("#openSenderForm").html(resp).foundation('open');
+			});
 		}
 	</script>
 {% endblock %}
