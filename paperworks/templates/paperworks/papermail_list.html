@@ -31,8 +31,11 @@
  {% include request.session.fileview %}
 </span>
 
-<div class="reveal" id="addPapermailForm" data-reveal>
+<div class="reveal" id="addPapermailForm" data-reveal data-multiple-opened="true">
 </div>
+
+	<div class="reveal" id="openSenderForm" data-reveal data-multiple-opened="true">
+	</div>
 
 <!-- pagination avec filtre des catégories et recherche d'articles-->
 	{% if is_paginated %}
@@ -93,6 +96,15 @@
 			$.ajax('{% url 'papermail-create' %}')
 			.done(function(resp){
 				$("#addPapermailForm").html(resp).foundation('open');
+			});
+		}
+	</script>
+
+	<script type="text/javascript">
+		function addSender() {
+			$.ajax('{% url 'sender-create' %}')
+			.done(function(resp){
+				$("#openSenderForm").html(resp).foundation('open');
 			});
 		}
 	</script>

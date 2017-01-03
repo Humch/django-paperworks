@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse_lazy
 import json
 
 from .models import Papermail, Tag, Sender
-from .forms import PapermailUpdateForm
+from .forms import PapermailUpdateForm, PapermailCreateForm
 
 # Mixin pour la gestion des formulaires envoyés par AJAX --> issu du site Django https://docs.djangoproject.com/fr/1.9/topics/class-based-views/generic-editing/
 
@@ -135,16 +135,12 @@ class PapermailDetail(DetailView):
 class PapermailCreate(AjaxableResponseMixin, CreateView):
     
     model = Papermail
-    fields = ['paper_file','name_file','sender','recipient','date_paper','tag','property_of']
+    form_class = PapermailCreateForm
     template_name = 'paperworks/papermail_create_form.html'
     
-    def get_initial(self):
-        
-        initial = super(PapermailCreate, self).get_initial()
-        
-        initial['property_of'] = self.request.user
-        
-        return initial
+    def form_valid(self, form):
+        form.instance.property_of = self.request.user
+        return super(PapermailCreate, self).form_valid(form)
     
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
