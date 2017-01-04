@@ -4,7 +4,7 @@ from django import forms
 
 from django.utils.safestring import mark_safe
 
-from .models import Papermail, Tag, Sender
+from .models import Papermail, Tag, Sender, Recipient
 
 class PapermailCreateForm(ModelForm):
     
@@ -16,6 +16,12 @@ class PapermailCreateForm(ModelForm):
     sender = ModelChoiceField(
                 queryset = Sender.objects.all(),
                 label = mark_safe('Sender <a href="#" onClick="addSender()"><i class="fi-plus green-color"></i></a>'),
+                widget = Select(attrs={'required':True})
+            )
+    
+    recipient = ModelChoiceField(
+                queryset = Recipient.objects.all(),
+                label = mark_safe('Recipient <a href="#" onClick="addRecipient()"><i class="fi-plus green-color"></i></a>'),
                 widget = Select(attrs={'required':True})
             )
 
@@ -34,6 +40,12 @@ class PapermailUpdateForm(ModelForm):
     sender = ModelChoiceField(
                 queryset = Sender.objects.all(),
                 label = mark_safe('Sender <a href="#" onClick="addSender()"><i class="fi-plus green-color"></i></a>'),
+                widget = Select(attrs={'required':True})
+            )
+
+    recipient = ModelChoiceField(
+                queryset = Recipient.objects.all(),
+                label = mark_safe('Recipient <a href="#" onClick="addRecipient()"><i class="fi-plus green-color"></i></a>'),
                 widget = Select(attrs={'required':True})
             )
     

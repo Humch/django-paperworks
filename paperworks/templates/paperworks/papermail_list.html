@@ -34,8 +34,11 @@
 <div class="reveal" id="addPapermailForm" data-reveal data-multiple-opened="true">
 </div>
 
-	<div class="reveal" id="openSenderForm" data-reveal data-multiple-opened="true">
-	</div>
+<div class="reveal" id="openSenderForm" data-reveal data-multiple-opened="true">
+</div>
+
+<div class="reveal" id="openRecipientForm" data-reveal data-multiple-opened="true">
+</div>
 
 <!-- pagination avec filtre des catégories et recherche d'articles-->
 	{% if is_paginated %}
@@ -105,6 +108,15 @@
 			$.ajax('{% url 'sender-create' %}')
 			.done(function(resp){
 				$("#openSenderForm").html(resp).foundation('open');
+			});
+		}
+	</script>
+
+	<script type="text/javascript">
+		function addRecipient() {
+			$.ajax('{% url 'recipient-create' %}')
+			.done(function(resp){
+				$("#openRecipientForm").html(resp).foundation('open');
 			});
 		}
 	</script>
