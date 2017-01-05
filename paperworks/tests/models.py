@@ -12,27 +12,21 @@ paperworks_media_root = getattr(settings, 'PAPERWORKS_MEDIA_ROOT','')
 
 class Sender(models.Model):
     
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=200)
     
     def __str__(self):
         return self.name
-
-    def get_absolute_url(self):
-        return reverse('papermail-list')
 
 class Recipient(models.Model):
     
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=200)
     
     def __str__(self):
         return self.name
-    
-    def get_absolute_url(self):
-        return reverse('papermail-list')
 
 class Tag(models.Model):
     
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=200)
     
     def __str__(self):
         return self.name

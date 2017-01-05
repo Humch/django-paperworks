@@ -3,57 +3,27 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to django-paperworks's documentation!
-=============================================
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-
+Django Paperworks
+=================
 
 Django Paperworks is a reusable application for Django to store personal paperworks as an EDM software.
 
-Installation
-**********************
+The package is hosted on `PyPI <http://pypi.python.org/pypi/django-paperworks>`_
 
-Prerequisites
----------------
+The source code is hosted on `Github <https://github.com/Humch/django-paperworks>`_
 
-This requirements are automatically installed with pip and are include in the setup.py file
+Contents
+--------
 
-Wand => Wand is a ctypes-based simple ImageMagick binding for Python.
-python-magic => This module uses ctypes to access the libmagic file type identification library.
-Pillow => Pillow is the friendly PIL fork by Alex Clark and Contributors.
+.. toctree::
+   :maxdepth: 1
+   
+   quickstart
+   tests
+   licensing
+   
+Indices
+-------
 
-Installing
-------------
-
-Install the apps with pip ::
-
-    $ pip install django-paperworks
-
-Configure your settings file
------------------------------
-
-Add django-paperworks to your installed_apps ::
-
-    INSTALLED_APPS = [
-        ...
-        'paperworks.apps.PaperworksConfig',
-    ]
-
-Configure MEDIA_ROOT setting
-
-If you want store files and thumbnails to a subfolder configure PAPERWORKS_MEDIA_ROOT variable
-
-Add django-paperworks to urls file ::
-
-    from django.conf.urls import url, include
-    from paperworks import urls
-    ...
-    urlpatterns = [
-        ...
-        url(r'^', include('paperworks.urls')),
-    ]
-
+* :ref:`genindex`
+* :ref:`search`
