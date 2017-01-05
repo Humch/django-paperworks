@@ -1,5 +1,5 @@
 Tests
-*******
+===========
 
 Django-paperworks is supplied with tests.
 
