@@ -18,10 +18,15 @@
         </div>
         <div class='small-8 columns'>
             <p>
-                <div class="button-group">
+                <div class="button-group show-for-medium">
                     <button class="button success" onClick="updatePapermail('{% url 'papermail-update' papermail.id %}')"><i class="fi-pencil"></i> Editer</button>
                     <button class="button"><i class="fi-share"></i> Partager</button>
                     <button class="alert button" onClick="deletePapermail('{% url 'papermail-delete' papermail.id %}')"><i class="fi-x"></i> Supprimer</button>
+                </div>
+				<div class="button-group hide-for-medium">
+                    <button class="button success" onClick="updatePapermail('{% url 'papermail-update' papermail.id %}')"><i class="fi-pencil"></i></button>
+                    <button class="button"><i class="fi-share"></i></button>
+                    <button class="alert button" onClick="deletePapermail('{% url 'papermail-delete' papermail.id %}')"><i class="fi-x"></i></button>
                 </div>
             </p>
             <p> Date du document : {{ papermail.date_paper }} </p>
