@@ -11,4 +11,4 @@ before_install:
 install:
   - python setup.py install
 
-script: python3 paperworks/runtests.pyntests.py
+script: python3 paperworks/runtests.py
