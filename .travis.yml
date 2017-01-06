@@ -1,7 +1,6 @@
 language: python
 
 python:
-  - 3.3
   - 3.4
   - 3.5
 
@@ -12,4 +11,4 @@ before_install:
 install:
   - python setup.py install
 
-script: python3 paperworks/runtests.py
+script: python3 paperworks/runtests.pyntests.py
