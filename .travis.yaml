@@ -1,0 +1,15 @@
+language: python
+
+python:
+  - 3.3
+  - 3.4
+  - 3.5
+
+before_install:
+  - sudo apt-get install libmagickwand-dev
+  - pip install Wand python-magic Pillow django
+
+install:
+  - python setup.py install
+
+script: pytest
