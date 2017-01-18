@@ -1,8 +1,3 @@
-.. django-paperworks documentation master file, created by
-   sphinx-quickstart on Thu Dec 22 17:58:34 2016.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Django Paperworks
 =================
 
@@ -21,9 +16,4 @@ Contents
    quickstart
    tests
    licensing
-   
-Indices
--------
-
-* :ref:`genindex`
-* :ref:`search`
+   changelog
