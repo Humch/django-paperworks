@@ -28,7 +28,7 @@ Add django-paperworks to your installed_apps ::
 
     INSTALLED_APPS = [
         ...
-        'paperworks.apps.PaperworksConfig',
+        'paperworks',
     ]
 
 Configure MEDIA_ROOT setting
