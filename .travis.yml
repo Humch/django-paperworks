@@ -6,7 +6,7 @@ python:
 
 before_install:
   - sudo apt-get install libmagickwand-dev
-  - pip install Wand python-magic Pillow django
+  - pip install Wand python-magic Pillow django django-auxialiare
 
 install:
   - python setup.py install

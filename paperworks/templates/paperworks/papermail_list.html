@@ -4,10 +4,6 @@
 
 {% block title %}Liste des fichiers{% endblock %}
 
-{% block css %}
-	<link rel="stylesheet" href="{% static "paperworks/css/foundation-datepicker.min.css" %}">
-{% endblock %}
-
 {% block content %}
         <div class='row margin-bottom margin-top'>
 			<div class='small-6 columns'>
@@ -40,7 +36,7 @@
 <div class="reveal" id="openRecipientForm" data-reveal data-multiple-opened="true">
 </div>
 
-<!-- pagination avec filtre des catégories et recherche d'articles-->
+<!-- pagination -->
 	{% if is_paginated %}
 	<div class="row">
 		<ul class="pagination text-center" role="navigation" aria-label="Pagination">
@@ -76,10 +72,7 @@
 
 {% block javascript %}
 
-	<script src="{% static 'paperworks/js/foundation-datepicker.min.js' %}"></script>
-	<script src="{% static 'paperworks/js/foundation-datepicker.fr.js' %}"></script>
-
-        <script type="text/javascript">
+    <script type="text/javascript">
 		function changePapermailView(action){
 			$.ajax({
 				url:'{% url 'papermail-list' %}?page={{ page_obj.number }}',

@@ -21,7 +21,8 @@ setup(
     install_requires=[
         'Wand',
         'Pillow',
-        'python-magic'
+        'python-magic',
+        'django-auxiliare'
     ],
     classifiers=[
         'Environment :: Web Environment',

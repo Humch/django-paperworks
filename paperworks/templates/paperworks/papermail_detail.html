@@ -4,10 +4,6 @@
 
 {% block title %}{{ papermail.name_file }}{% endblock %}
 
-{% block css %}
-	<link rel="stylesheet" href="{% static "paperworks/css/foundation-datepicker.min.css" %}">
-{% endblock %}
-
 {% block content %}
     <div class='column row margin-top'>
         <h2 class='text-center'>{{ papermail.name_file }}</h2>
@@ -48,10 +44,7 @@
 {% endblock %}
 
 {% block javascript %}
-	
-	<script src="{% static 'paperworks/js/foundation-datepicker.min.js' %}"></script>
-	<script src="{% static 'paperworks/js/foundation-datepicker.fr.js' %}"></script>
-	
+
 	<script type="text/javascript">
 		function updatePapermail($idPapermail) {
 			$.ajax($idPapermail)
