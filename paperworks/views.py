@@ -133,6 +133,9 @@ class PapermailDetail(DetailView):
         return super(PapermailDetail, self).dispatch(*args, **kwargs)
 
 class PapermailCreate(AjaxableResponseMixin, CreateView):
+    """
+    View to create a Papermail. Works with ajax.
+    """
     
     model = Papermail
     form_class = PapermailForm
@@ -147,6 +150,10 @@ class PapermailCreate(AjaxableResponseMixin, CreateView):
         return super(PapermailCreate, self).dispatch(*args, **kwargs)
 
 class PapermailUpdate(AjaxableResponseMixin, UpdateView):
+    """
+    View to update a Papermail. Works with ajax.
+    Use default template papermail_form.html
+    """
     
     model = Papermail
     form_class = PapermailForm
@@ -156,6 +163,11 @@ class PapermailUpdate(AjaxableResponseMixin, UpdateView):
         return super(PapermailUpdate, self).dispatch(*args, **kwargs)
     
 class PapermailDelete(AjaxableResponseMixin, DeleteView):
+    """
+    View to delete a Papermail. Works with ajax.
+    Use default template papermail_confirm_delete.html
+    """
+    
     model = Papermail
     success_url = reverse_lazy('papermail-list')
 

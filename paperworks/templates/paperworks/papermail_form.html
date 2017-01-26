@@ -1,5 +1,11 @@
 <div class="row">
-	<form action="{% url 'papermail-update' papermail.id %}" method="post">
+	<div class="success callout display_for_success" data-closable id="response_papermail">
+		<p class="text-center">Papermail <span id="return_papermail"></span> is updated</p>
+	</div>
+	<div class="alert callout display_for_success" data-closable id="error_update_papermail">
+		<p class="text-center"><i class="fi-alert red-color"></i> Papermail isn't updated <i class="fi-alert red-color"></i></p>
+	</div>
+	<form action="" id='updatePapermailSend' method="post">
 		{% csrf_token %}
 		{{ form.as_p }}
 		<p class="text-center">
@@ -10,3 +16,31 @@
 <button class="close-button" data-close aria-label="Close modal" type="button">
 	<span aria-hidden="true">&times;</span>
 </button>
+	<script type="text/javascript">
+		$( '#updatePapermailSend' )
+			.submit( function( e ) {
+				$.ajax( {
+					success:  function(resp) {
+						document.getElementById("return_papermail").innerHTML = resp.name_file;
+						$("#response_papermail").show();
+						setTimeout(function() {
+							$("#response_papermail").hide();
+							location.reload();
+						}, 2000 );
+					},
+					error : function(xhr) {
+						$("#error_update_papermail").show();
+						setTimeout(function() {
+							$("#error_update_papermail").hide();
+						}, 2000 );
+					},
+					url: '{% url 'papermail-update' papermail.id %}',
+					type: 'POST',
+					data: new FormData( this ),
+					processData: false,
+					contentType: false
+				} );
+				e.preventDefault();
+				
+			} );
+	</script>

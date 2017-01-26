@@ -1,4 +1,10 @@
 <div class="row">
+	<div class="success callout display_for_success" data-closable id="response_papermail">
+		<p class="text-center">Papermail <span id="return_papermail"></span> is created</p>
+	</div>
+	<div class="alert callout display_for_success" data-closable id="error_create_papermail">
+		<p class="text-center"><i class="fi-alert red-color"></i> Papermail isn't created <i class="fi-alert red-color"></i></p>
+	</div>
 	<form action="" method="post" id="addPapermailSend" enctype="multipart/form-data">
 		{% csrf_token %}
 		{{ form.as_p }}
@@ -16,8 +22,19 @@
 		$( '#addPapermailSend' )
 			.submit( function( e ) {
 				$.ajax( {
-					success:  function() {
-						$('#addPapermailSend')[0].reset();
+					success:  function(resp) {
+						document.getElementById("return_papermail").innerHTML = resp.name_file;
+						$("#response_papermail").show();
+						setTimeout(function() {
+							$("#response_papermail").hide();
+							$('#addPapermailSend')[0].reset();
+						}, 3000 );
+					},
+					error : function(xhr) {
+						$("#error_create_papermail").show();
+						setTimeout(function() {
+							$("#error_create_papermail").hide();
+						}, 4000 );
 					},
 					url: '{% url 'papermail-create' %}',
 					type: 'POST',
