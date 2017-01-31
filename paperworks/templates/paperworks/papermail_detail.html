@@ -10,7 +10,7 @@
     </div>
     <div class='row'>
         <div class='small-4 columns'>
-            <img class='thumbnail' src="{{ papermail.thumbnail.url }}"/>
+            <img class='thumbnail' src="{% if papermail.thumbnail %}{{ papermail.thumbnail.url }}{% else %}{% static 'paperworks/images/default_thumb.jpg' %}{% endif %}"/>
         </div>
         <div class='small-8 columns'>
             <p>

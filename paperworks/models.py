@@ -56,5 +56,3 @@ class Papermail(models.Model):
     
     def get_absolute_url(self):
         return reverse('papermail-detail', kwargs={'pk': self.pk})
-    
-# TODO ==> creer une methode post_save
