@@ -6,13 +6,6 @@ from django.utils.safestring import mark_safe
 
 from .models import Papermail, Tag, Sender, Recipient
 
-class DateTypeInput(forms.DateInput):
-    """
-    Provide HTML5 date type input support
-    Change form field type from text to date
-    """
-    input_type = 'date'
-
 class PapermailForm(ModelForm):
     """
     Model form to create and update Papermail Model object
@@ -33,10 +26,6 @@ class PapermailForm(ModelForm):
                 queryset = Recipient.objects.all(),
                 label = mark_safe('Recipient <a href="#" onClick="addRecipient()"><i class="fi-plus green-color"></i></a>'),
                 widget = Select(attrs={'required':True})
-            )
-
-    date_paper = DateField(
-                widget = DateTypeInput()
             )
 
     class Meta:
