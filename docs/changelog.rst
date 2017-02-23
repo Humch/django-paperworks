@@ -1,6 +1,13 @@
 Changelog
 ===========
 
+Version 0.0.3
+--------------
+
+- duplicate static content and menu are supplied by django-auxiliare
+- add ajax reponse to papermail form
+- update documentation
+
 Version 0.0.2
 --------------
 

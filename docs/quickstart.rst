@@ -13,6 +13,8 @@ python-magic => This module uses ctypes to access the libmagic file type identif
 
 Pillow => Pillow is the friendly PIL fork by Alex Clark and Contributors.
 
+django-auxiliare => core package which provides static content and basics views.
+
 
 Installing
 ============
@@ -28,6 +30,7 @@ Add django-paperworks to your installed_apps ::
 
     INSTALLED_APPS = [
         ...
+        'auxiliare'
         'paperworks',
     ]
 
