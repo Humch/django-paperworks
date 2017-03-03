@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views import View
 from django.views.generic import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-from django.http import HttpResponseBadRequest, JsonResponse
+from django.http import HttpResponseBadRequest, JsonResponse, Http404, HttpResponse
 from django.core.urlresolvers import reverse_lazy
+import magic
 
 import json
 
@@ -194,3 +196,35 @@ class RecipientCreate(SenderAjaxableResponseMixin,CreateView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(RecipientCreate, self).dispatch(*args, **kwargs)
+
+class PrivatePapermailMedia(View):
+    """
+    Test if user is the paperfile's owner or if is shared with him
+    Else the view return a 404 page
+    """
+    
+    model = Papermail
+    
+    def get(self, *args, **kwargs):
+        
+        if self.request.user.is_anonymous():
+            raise Http404()
+        
+        f = Papermail.objects.get( id = kwargs['pk'] )
+        
+        mime = magic.Magic(mime=True)
+        filetype = mime.from_file(f.paper_file.path)
+        
+        if self.request.user == (f.property_of or f.shared_with):
+            
+            response = HttpResponse(f.paper_file.file, content_type = filetype)
+            
+            return response
+        
+        else:
+            
+            raise Http404()
+    
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(PrivatePapermailMedia, self).dispatch(*args, **kwargs)

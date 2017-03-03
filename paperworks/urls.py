@@ -1,6 +1,8 @@
 from django.conf.urls import url, include
 
-from .views import PapermailList, PapermailDetail, PapermailCreate, PapermailUpdate, PapermailDelete, SenderCreate, RecipientCreate
+from django.conf import settings
+
+from .views import PapermailList, PapermailDetail, PapermailCreate, PapermailUpdate, PapermailDelete, SenderCreate, RecipientCreate, PrivatePapermailMedia
 
 from auxiliare import urls
 
@@ -13,4 +15,5 @@ urlpatterns = [
     url(r'^delete/(?P<pk>\d+)/$', PapermailDelete.as_view(), name='papermail-delete'),
     url(r'^create-sender/$', SenderCreate.as_view(), name='sender-create'),
     url(r'^create-recipient/$', RecipientCreate.as_view(), name='recipient-create'),
+    url(r'^download-papermail/(?P<pk>\d+)/$', PrivatePapermailMedia.as_view(), name='private-papermail-media'),
 ]

@@ -9,6 +9,8 @@ import magic
 from wand.image import Image
 from os import remove
 
+from uuid import uuid4
+
 media_root = getattr(settings, 'MEDIA_ROOT')
 
 @receiver(post_save, sender=Papermail)
@@ -16,11 +18,12 @@ def generate_thumbnail(sender,instance, **kwargs):
     """
     generate a thumbnail of the file to display in views
     only jpeg png or pdf is supported
+    thumbnail name is generate with uuid module
     """
     
     mime = magic.Magic(mime=True)
     type_fichier = mime.from_file(instance.paper_file.path)
-    nom_thumbnail = media_root + instance.name_file + '_thumb.jpeg'
+    nom_thumbnail = media_root + uuid4().hex + '_thumb.jpeg'
 
     if type_fichier == 'image/png' or type_fichier == 'image/jpeg':
 
@@ -31,7 +34,7 @@ def generate_thumbnail(sender,instance, **kwargs):
                 converted.save(filename= nom_thumbnail)
                 fich = File(open(nom_thumbnail,'rb'))
                 post_save.disconnect(generate_thumbnail, sender=Papermail)
-                instance.thumbnail.save(name = instance.name_file + '_thumb.jpeg', content = fich)
+                instance.thumbnail.save(name = uuid4().hex + '_thumb.jpeg', content = fich)
                 post_save.connect(generate_thumbnail, sender=Papermail)
                 remove(nom_thumbnail)
                 
@@ -43,6 +46,6 @@ def generate_thumbnail(sender,instance, **kwargs):
                 converted.save(filename= nom_thumbnail)
                 fich = File(open(nom_thumbnail,'rb'))
                 post_save.disconnect(generate_thumbnail, sender=Papermail)
-                instance.thumbnail.save(name = instance.name_file + '_thumb.jpeg', content = fich)
+                instance.thumbnail.save(name = uuid4().hex + '_thumb.jpeg', content = fich)
                 post_save.connect(generate_thumbnail, sender=Papermail)
                 remove(nom_thumbnail)

@@ -8,6 +8,9 @@ from django.conf import settings
 
 from wand.image import Image
 
+import os
+from uuid import uuid4
+
 paperworks_media_root = getattr(settings, 'PAPERWORKS_MEDIA_ROOT','')
 
 class Sender(models.Model):
@@ -37,9 +40,27 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+
+def path_and_rename(path):
+    """
+    Rename the file with uuid64 module
+    """
+    def wrapper(instance, filename):
+        ext = filename.split('.')[-1]
+        # get filename
+        if instance.pk:
+            filename = '{}.{}'.format(instance.pk, ext)
+        else:
+            # set filename as random string
+            filename = '{}.{}'.format(uuid4().hex, ext)
+        # return the whole path to the file
+        return os.path.join(path, filename)
+    return wrapper
+
+
 class Papermail(models.Model):
     
-    paper_file = models.FileField(upload_to = paperworks_media_root)
+    paper_file = models.FileField(upload_to = path_and_rename(paperworks_media_root))
     name_file = models.CharField(max_length=200)
     thumbnail = models.ImageField(upload_to = paperworks_media_root, blank=True)
     sender = models.ForeignKey(Sender, on_delete=models.CASCADE)

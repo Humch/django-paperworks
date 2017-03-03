@@ -1,6 +1,13 @@
 Changelog
 ===========
 
+Version 0.0.4
+--------------
+
+- add a private media view, user need to be authenticate and have an access to download papermails
+- papermails and thumbnails filenames are generate with uuid module
+
+
 Version 0.0.3
 --------------
 
