@@ -18,7 +18,7 @@
                                         <td class='text-center'>{{ papermail.recipient }}</td>
                                         <td>{{ papermail.date_paper }}</td>
                                         <td>
-                                                {% for tag in all_tags %}
+                                                {% for tag in papermail.tag.all %}
                                                         {{ tag.name }}
                                                         {% if not forloop.last %} | {% endif %}
                                                 {% endfor %}

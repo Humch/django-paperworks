@@ -28,7 +28,7 @@
             <p> Date du document : {{ papermail.date_paper }} </p>
             <p> Emetteur du document : {{ papermail.sender }} </p>
 			<p> Destinataire du document : {{ papermail.recipient }} </p>
-            <p> Etiquettes du document : {% for tag in all_tags %}{{ tag.name }}{% if not forloop.last %} | {% endif %}{% endfor %}</p>
+            <p> Etiquettes du document : {% for tag in papermail.tag.all %}{{ tag.name }}{% if not forloop.last %} | {% endif %}{% endfor %}</p>
             <p><a href='{% url 'private-papermail-media' papermail.id %}' target="_blank" class='button'><i class="fi-download"></i> Télécharger le fichier</a></p>
         </div>
     </div>

@@ -14,7 +14,7 @@ import json
 from .models import Papermail, Tag, Sender, Recipient
 from .forms import PapermailForm
 
-# Mixin pour la gestion des formulaires envoyés par AJAX --> issu du site Django https://docs.djangoproject.com/fr/1.9/topics/class-based-views/generic-editing/
+# Mixin for AJAX forms --> from https://docs.djangoproject.com/en/1.9/topics/class-based-views/generic-editing/
 
 class AjaxableResponseMixin(object):
     """
@@ -69,6 +69,11 @@ class SenderAjaxableResponseMixin(object):
             return response
 
 class PapermailList(ListView):
+    """
+    Render a list of papermails owned by request user
+    User can change the list's style with AJAX button
+    List's style is save in session data
+    """
     
     model = Papermail
     context_object_name = 'papermails'
@@ -77,8 +82,6 @@ class PapermailList(ListView):
     def get_context_data(self, **kwargs):
         
         context = super(PapermailList, self).get_context_data(**kwargs)
-
-        context['all_tags'] = Tag.objects.all()
         
         return context
     
@@ -119,16 +122,10 @@ class PapermailList(ListView):
         return super(PapermailList, self).dispatch(*args, **kwargs)
     
 class PapermailDetail(DetailView):
-
+    """
+    Render Papermail detail View
+    """
     model = Papermail
-    
-    def get_context_data(self, **kwargs):
-        
-        context = super(PapermailDetail, self).get_context_data(**kwargs)
-
-        context['all_tags'] = Tag.objects.all()
-        
-        return context
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
