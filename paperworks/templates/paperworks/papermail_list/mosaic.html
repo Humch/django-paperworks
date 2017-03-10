@@ -5,6 +5,7 @@
             <a class="thumbnail" href='{% url 'papermail-detail' papermail.id %}'><img src="{% if papermail.thumbnail %}{{ papermail.thumbnail.url }}{% else %}{% static 'paperworks/images/default_thumb.jpg' %}{% endif %}"/></a>
         </div>
         {% cycle '' '' '' '</div>'%}
+        {% if forloop.last  and  not forloop.counter|divisibleby:"4" %}</div>{% endif %}
 {% empty %}
     <h1 class=" text-center subheader">Vous n'avez pas encore de document ! Allez au boulot ! ;)</h1>            
 {% endfor %}
