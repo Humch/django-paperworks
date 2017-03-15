@@ -1,9 +1,10 @@
+{% load i18n %}
 <div class='row' >
 	<form action="{% url 'papermail-delete' papermail.id %}" method="post">
 		{% csrf_token %}
-		<p class="text-center">Voulez vous vraiment effacer {{ fichier.nom_fichier }} ?</p>
+		<p class="text-center">{% trans "Do you want to delete " %} {{ fichier.nom_fichier }} ?</p>
 		<p class="text-center">
-			<input type="submit" class="button" value="Valider">
+			<input type="submit" class="button" value="{% trans "I'm sure" %}">
 		</p>
 </form>
 </div>

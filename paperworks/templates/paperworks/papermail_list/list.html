@@ -1,13 +1,14 @@
+{% load i18n %}
 {% if papermails %}
 <div class='row'>
         <table class="stack_small">
                 <thead>
                         <tr>
-                                <th>Nom</th>
-                                <th class='text-center'>Emetteur</th>
-                                <th class='text-center'>Destinataire</th>
-                                <th>Date du document</th>
-                                <th>Etiquettes</th>
+                                <th>{% trans "Filename" %}</th>
+                                <th class='text-center'>{% trans "Sender" %}</th>
+                                <th class='text-center'>{% trans "Recipient" %}</th>
+                                <th>{% trans "Papermail's Date" %}</th>
+                                <th>{% trans "Tags" %}</th>
                         </tr>
                 </thead>
                 <tbody>
@@ -29,5 +30,5 @@
         </table>
 </div>
 {% else %}
-        <h1 class=" text-center subheader">Vous n'avez pas encore de document ! Allez au boulot ! ;)</h1>
+        <h1 class=" text-center subheader">{% trans "You haven't papermails, go to work ! ;)" %}</h1>
 {% endif %}

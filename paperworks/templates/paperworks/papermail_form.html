@@ -1,15 +1,16 @@
+{% load i18n %}
 <div class="row">
 	<div class="success callout display_for_success" data-closable id="response_papermail">
-		<p class="text-center">Papermail <span id="return_papermail"></span> is updated</p>
+		<p class="text-center">{% trans "Papermail" %} <span id="return_papermail"></span> {% trans "is updated" %}</p>
 	</div>
 	<div class="alert callout display_for_success" data-closable id="error_update_papermail">
-		<p class="text-center"><i class="fi-alert red-color"></i> Papermail isn't updated <i class="fi-alert red-color"></i></p>
+		<p class="text-center"><i class="fi-alert red-color"></i> {% trans "Papermail isn't updated" %} <i class="fi-alert red-color"></i></p>
 	</div>
 	<form action="" id='updatePapermailSend' method="post">
 		{% csrf_token %}
 		{{ form.as_p }}
 		<p class="text-center">
-			<input type="submit" class="button" value="Valider">
+			<input type="submit" class="button" value="{% trans "Submit" %}">
 		</p>
 	</form>
 </div>

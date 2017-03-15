@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 {% for papermail in papermails %}
         {% cycle '<div class="row">' '' '' ''%}
         <div class="small-3 columns  {% if forloop.last %} end {% endif %}">
@@ -7,7 +8,7 @@
         {% cycle '' '' '' '</div>'%}
         {% if forloop.last  and  not forloop.counter|divisibleby:"4" %}</div>{% endif %}
 {% empty %}
-    <h1 class=" text-center subheader">Vous n'avez pas encore de document ! Allez au boulot ! ;)</h1>            
+    <h1 class=" text-center subheader">{% trans "You haven't papermails, go to work ! ;)" %}</h1>            
 {% endfor %}
 
 {% if fichiers|length|divisibleby:4 is not True %}

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% load static from staticfiles %}
 
 {% block title %}{{ papermail.name_file }}{% endblock %}
@@ -15,9 +15,9 @@
         <div class='small-8 columns'>
             <p>
                 <div class="button-group show-for-medium">
-                    <button class="button success" onClick="updatePapermail('{% url 'papermail-update' papermail.id %}')"><i class="fi-pencil"></i> Editer</button>
-                    <button class="button"><i class="fi-share"></i> Partager</button>
-                    <button class="alert button" onClick="deletePapermail('{% url 'papermail-delete' papermail.id %}')"><i class="fi-x"></i> Supprimer</button>
+                    <button class="button success" onClick="updatePapermail('{% url 'papermail-update' papermail.id %}')"><i class="fi-pencil"></i>{% trans "Update" %}</button>
+                    <button class="button"><i class="fi-share"></i> {% trans "Share" %}</button>
+                    <button class="alert button" onClick="deletePapermail('{% url 'papermail-delete' papermail.id %}')"><i class="fi-x"></i> {% trans "Delete" %}</button>
                 </div>
 				<div class="button-group hide-for-medium">
                     <button class="button success" onClick="updatePapermail('{% url 'papermail-update' papermail.id %}')"><i class="fi-pencil"></i></button>
@@ -25,11 +25,11 @@
                     <button class="alert button" onClick="deletePapermail('{% url 'papermail-delete' papermail.id %}')"><i class="fi-x"></i></button>
                 </div>
             </p>
-            <p> Date du document : {{ papermail.date_paper }} </p>
-            <p> Emetteur du document : {{ papermail.sender }} </p>
-			<p> Destinataire du document : {{ papermail.recipient }} </p>
-            <p> Etiquettes du document : {% for tag in papermail.tag.all %}{{ tag.name }}{% if not forloop.last %} | {% endif %}{% endfor %}</p>
-            <p><a href='{% url 'private-papermail-media' papermail.id %}' target="_blank" class='button'><i class="fi-download"></i> Télécharger le fichier</a></p>
+            <p>{% trans "Papermail's Date" %} : {{ papermail.date_paper }} </p>
+            <p>{% trans "Sender" %} : {{ papermail.sender }} </p>
+			<p>{% trans "Recipient" %} : {{ papermail.recipient }} </p>
+            <p>{% trans "Tags" %} : {% for tag in papermail.tag.all %}{{ tag.name }}{% if not forloop.last %} | {% endif %}{% endfor %}</p>
+            <p><a href='{% url 'private-papermail-media' papermail.id %}' target="_blank" class='button'><i class="fi-download"></i> {% trans "Download" %}</a></p>
         </div>
     </div>
 

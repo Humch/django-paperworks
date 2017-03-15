@@ -1,15 +1,16 @@
+{% load i18n %}
 <div class="row">
 	<div class="success callout display_for_success" data-closable id="response_sender">
-		<p class="text-center">Sender <span id="return_sender"></span> is created</p>
+		<p class="text-center">{% trans "Sender" %} <span id="return_sender"></span> {% trans "is created" %}</p>
 	</div>
 	<div class="alert callout display_for_success" data-closable id="error_create_sender">
-		<p class="text-center"><i class="fi-alert red-color"></i> Sender isn't created <i class="fi-alert red-color"></i></p>
+		<p class="text-center"><i class="fi-alert red-color"></i> {% trans "Sender isn't created" %} <i class="fi-alert red-color"></i></p>
 	</div>
 	<form action="" id="addSenderSend" method="post">
 		{% csrf_token %}
 		{{ form.as_p }}
 		<p class="text-center">
-			<input type="submit" class="button" value="Valider">
+			<input type="submit" class="button" value="{% trans "Submit" %}">
 		</p>
 	</form>
 </div>

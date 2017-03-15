@@ -12,7 +12,7 @@ import magic
 import json
 
 from .models import Papermail, Tag, Sender, Recipient
-from .forms import PapermailForm
+from .forms import PapermailForm, RecipientForm, SenderForm
 
 # Mixin for AJAX forms --> from https://docs.djangoproject.com/en/1.9/topics/class-based-views/generic-editing/
 
@@ -177,7 +177,7 @@ class PapermailDelete(AjaxableResponseMixin, DeleteView):
 class SenderCreate(SenderAjaxableResponseMixin,CreateView):
     
     model = Sender
-    fields = ['name']
+    form_class = SenderForm
     template_name = 'paperworks/sender_create_form.html'
     
     @method_decorator(login_required)
@@ -187,7 +187,7 @@ class SenderCreate(SenderAjaxableResponseMixin,CreateView):
 class RecipientCreate(SenderAjaxableResponseMixin,CreateView):
     
     model = Recipient
-    fields = ['name']
+    form_class = RecipientForm
     template_name = 'paperworks/recipient_create_form.html'
     
     @method_decorator(login_required)
