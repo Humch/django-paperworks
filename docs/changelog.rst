@@ -5,6 +5,7 @@ Version 0.0.5
 --------------
 
 - add french translation
+- update forms for Django 1.11
 
 Version 0.0.4
 --------------
