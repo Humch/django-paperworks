@@ -78,12 +78,6 @@ class PapermailList(ListView):
     model = Papermail
     context_object_name = 'papermails'
     paginate_by = 12
-
-    def get_context_data(self, **kwargs):
-        
-        context = super(PapermailList, self).get_context_data(**kwargs)
-        
-        return context
     
     def get_template_names(self, **kwargs):
     
@@ -113,7 +107,7 @@ class PapermailList(ListView):
     
     def get_queryset(self):
         
-        queryset = Papermail.objects.all().filter(property_of=self.request.user)
+        queryset = Papermail.objects.filter(property_of=self.request.user).order_by('id')
         
         return queryset
 
