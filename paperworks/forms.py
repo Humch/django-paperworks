@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm, FileInput, FileField, Select, ModelChoiceField, DateField, CharField, ModelMultipleChoiceField
+from django.forms import ModelForm, FileInput, FileField, Select, ModelChoiceField, DateField, CharField, ModelMultipleChoiceField, SelectMultiple
 from django.utils.translation import ugettext as _
 from django.utils.safestring import mark_safe
 
@@ -51,13 +51,13 @@ class PapermailForm(ModelForm):
     sender = ModelChoiceField(
                 queryset = Sender.objects.all(),
                 label = mark_safe(_("Sender") + ' <a href="#" onClick="addSender()"><i class="fi-plus green-color"></i></a>'),
-                widget = Select(attrs={'required':True})
+                required = True
             )
     
     recipient = ModelChoiceField(
                 queryset = Recipient.objects.all(),
                 label = mark_safe(_("Recipient") + ' <a href="#" onClick="addRecipient()"><i class="fi-plus green-color"></i></a>'),
-                widget = Select(attrs={'required':True})
+                required = True
             )
     
     date_paper = DateField(
@@ -66,7 +66,8 @@ class PapermailForm(ModelForm):
     
     tag = ModelMultipleChoiceField(
                 queryset = Tag.objects.all(),
-                label = _("Tags")
+                label = _("Tags"),
+                required = False
     )
 
     class Meta:
