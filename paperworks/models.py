@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
+from django.utils.deconstruct import deconstructible
 from django.conf import settings
 
 from wand.image import Image
@@ -40,27 +41,31 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+@deconstructible
+class PathAndRename(object):
 
-def path_and_rename(path):
-    """
-    Rename the file with uuid64 module
-    """
-    def wrapper(instance, filename):
+    """Rename the file with uuid64 module"""
+
+    def __init__(self, sub_path):
+        self.path = sub_path
+
+    def __call__(self, instance, filename):
         ext = filename.split('.')[-1]
-        # get filename
+         # get filename
         if instance.pk:
             filename = '{}.{}'.format(instance.pk, ext)
         else:
             # set filename as random string
             filename = '{}.{}'.format(uuid4().hex, ext)
         # return the whole path to the file
-        return os.path.join(path, filename)
-    return wrapper
+            return os.path.join(self.path, filename)
+        return wrapper
 
+path_and_rename = PathAndRename(paperworks_media_root)
 
 class Papermail(models.Model):
     
-    paper_file = models.FileField(upload_to = path_and_rename(paperworks_media_root))
+    paper_file = models.FileField(upload_to = path_and_rename)
     name_file = models.CharField(max_length=200)
     thumbnail = models.ImageField(upload_to = paperworks_media_root, blank=True)
     sender = models.ForeignKey(Sender, on_delete=models.CASCADE)
